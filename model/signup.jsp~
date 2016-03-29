@@ -1,0 +1,30 @@
+<%@ page import="java.sql.*" %>
+<%@ include file="connection.jsp" %>
+<%
+	String name = request.getParameter("name");
+	String email = request.getParameter("email");
+	String password = request.getParameter("password");
+	String contact = request.getParameter("contact");
+	String city = request.getParameter("city");
+	String address = request.getParameter("address");	   	
+String sql = "INSERT into users(name,email,password,contact,city,address) VALUES('"+name+"','"+password+"','"+contact+"','"+city+"','"+address+"')";
+st.executeUpdate(sql);
+%>
+<%   ResultSet resultset = st.executeQuery("select * from users");
+
+            while(resultset.next()){ 
+        %>
+            <TABLE BORDER="1">
+                <TR>
+                    <TH>ID</TH>
+                    <TH>Name</TH>
+                </TR>
+                <TR>
+                    <TD> <%= resultset.getString(1) %> </TD>
+                    <TD> <%= resultset.getString(2) %> </TD>
+                </TR>
+            </TABLE>
+        <% 
+            } 
+        %>
+

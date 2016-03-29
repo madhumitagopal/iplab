@@ -1,0 +1,48 @@
+<%@ page import="java.sql.*" %>
+
+<%@ include file="connection.jsp" %>
+
+
+
+<head>
+
+
+<title>Home</title>
+
+
+</head>
+
+
+
+<body>
+
+  
+
+      <%
+
+	  ResultSet rs = st.executeQuery("INSERT into users(name,email,password,contact,city,address VALUES()");
+
+	
+
+	  while(rs.next())
+
+	  {
+
+	  	  
+
+		 out.println(rs+"<br>"); 
+
+	  
+
+      	   }
+		rs.close();
+
+ 	   %>      
+
+  
+
+
+
+</body>
+
+</html>
