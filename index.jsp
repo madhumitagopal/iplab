@@ -19,67 +19,41 @@
 					</div>	  
 					<hr size="5px" color="Thistle" width="98%" style="clear: both;">
           <!-- Body -->
-		            <div style="width: 1000px; clear: both; background-color: white;height: 250px;">
+			    <%@ page import="java.sql.*" %>
+			    <%@ page import="java.io.*,java.util.*" %>
+		            <%@ include file="model/connection.jsp" %>
+			    <%	String category="bridal_gowns";
+				int sl_no = 1;
+				ResultSet resultset = st.executeQuery("select * from products where category='"+category+"'");	
+	while(resultset.next()) {	
+%>		
+	<form name= frm method=POST action = "model/add_to_cart.jsp"> 
+<div style="width: 1000px; clear: both; background-color: white;height: 250px;">
 						   <div style="margin: 20px 0 0 10px;float: left;width: 250px;">
-							    <img src="bride1.jpg" width="220px;"/>
+							    <img src=<%=resultset.getString("image_url")%> width="220px;"/>
 						   </div>
 						  <div style="float: right;margin: 20px 40px 0 0;width: 450px;font-size: 20px;text-align: justify ;font-family:Verdana; color:Silver;">
 							     <div width="200px" style="float: left;  padding-right: 10px;">
-								  <span style="font-size:23px; color:Gold">#1</span>
+								  <span style="font-size:23px; color:Gold">sl_no</span>
 							   </div>
 							   <div width="200px" style="float: right; padding: 0 30px 0 20px;">
-								  <span style="font-size:23px;color:Gold;">$ 5000</span>
+								  <span style="font-size:23px;color:Gold;"><%=resultset.getString("price")%></span>
 							   </div>
 							   <br><br>
-								 A Fairytale weeding gown for you on your most special day.A-line bridal gown with sweetheart neckline, bead and sequin embellishment from neckline to bustline, front drape, detachable shoulder straps, and a short sleeved bolero. Accesories available.
-							   
-							   
-							   <br><br><br>
-						    </div>
-					</div>
-					<hr color="Thistle" width="98%" style="clear;both;">
-					<div style="width: 1000px; clear: both; background-color: white;height: 250px;">
-						   <div style="margin: 20px 0 0 10px;float: left;width: 250px;">
-							    <img src="bride2.jpg" width="220px;"/>
-						   </div>
-						  <div style="float: right;margin: 20px 40px 0 0;width: 450px;font-size: 20px;text-align: justify ;font-family:Verdana; color:Silver;">
-							     <div width="200px" style="float: left;  padding-right: 10px;">
-								  <span style="font-size:23px; color:Gold">#2</span>
-							   </div>
-							   <div width="200px" style="float: right; padding: 0 30px 0 20px;">
-								  <span style="font-size:23px;color:Gold;">$ 7000</span>
-							   </div>
-								<br><br> 
-								 Sleeveless satin sheath bridal gown with a sheer bateau neckline, re-embroidered lace appliques with sequin embellishment on bodice and bottom half of skirt, and sheer back with wrapped buttons. 
-							   
+								<%=resultset.getString("description")%>
 							   
 							   <br><br><br>
 						    </div>
 					</div>
-					<hr color="Thistle" width="98%" style="clear;both;">
-					<div style="width: 1000px; clear: both; background-color: white;height: 300px;">
-						   <div style="margin: 10px 0 0 10px;float: left;width: 250px;">
-							    <img src="bride3.jpg" width="220px;"/>
-						   </div>
-						  <div style="float: right;margin: 20px 40px 0 0;width: 450px;font-size: 20px;text-align: justify ;font-family:Verdana; color:Silver;">
-							     <div width="200px" style="float: left;  padding-right: 10px;">
-								  <span style="font-size:23px; color:Gold">#3</span>
-							   </div>
-							   <div width="200px" style="float: right; padding: 0 30px 0 20px;">
-								  <span style="font-size:23px;color:Gold;">$ 9000</span>
-							   </div>
-							   <br><br>
-								 
-								 Trumpet gown with re-embroidered lace, strapless sweetheart neckline with semi-cathedral train. Features beads, sequins, and pearls. 3 / 4 poet sleeve bolero included. Headpiece included.
-							   
-							   
-							   <br><br><br>
-						    </div>
-					</div>
-					
-
+					<input type="hidden" name="product_id" value=<%=resultset.getString("id")%>>
+					<input type="submit" value="add to cart">
 
               </div>
+                 <% sl_no = sl_no + 1;
+							   }
+							   %>
+							   
+							
 	       </center>
 	 </body>
 </html>

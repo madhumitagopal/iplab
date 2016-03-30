@@ -7,17 +7,17 @@
 		
 	ResultSet resultset = st.executeQuery("select * from users where email='"+email+"'");	
 	while(resultset.next()) {	
-		
+	{	
 	if(resultset.getString("password").equals(password))
 	{
 		response.sendRedirect("../Home.html");
-		session.setAttribute( "theEmail", email );
+		session.setAttribute( "user_id", resultset.getString("id") );
 	}
 	
 	else
 		out.println("password mismatch");
 	break;
-
+	}
 
 } 
 
